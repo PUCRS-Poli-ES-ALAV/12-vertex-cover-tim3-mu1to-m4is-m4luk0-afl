@@ -65,24 +65,32 @@ public class App {
         List<Edge> cover = new ArrayList<Edge>();
         List<Edge> elementsI = g.getEdges();
 
-        for(Edge n: g.getEdges()) {
-            for (Edge edge : elementsI) {
-                System.out.println(edge.toString());
-            }
+        for(Edge n: elementsI) {
             Edge p = n;
             List<Edge> coverAux = new ArrayList<Edge>();
             List<Edge> elements = new ArrayList<Edge>();
-            elements = elementsI;
-            while (!elements.isEmpty()){
+            for (Edge edge : elementsI) {
+                elements.add(edge);
+            }
+
+            boolean aux = true;
+            while (aux){
                 coverAux.add(p);
                 elements.remove(p);
+                List<Edge> remove = new ArrayList<Edge>();
                 for (Edge nodeT : elements) {
                     if(nodeT.getNodeInit() == p.getNodeInit() || nodeT.getNodeInit() == p.getNodeEnd() || nodeT.getNodeEnd() == p.getNodeInit() || nodeT.getNodeEnd() == p.getNodeEnd()){
-                        elements.remove(nodeT);
+                        remove.add(nodeT);
                     }
+                }
+                for (Edge edge : remove) {
+                    elements.remove(edge);
                 }
                 if(elements.size() > 0){
                     p = elements.get(0);
+                }
+                else{
+                    aux = false;
                 }
             }
             if(cover.size() == 0 || coverAux.size() < cover.size()){

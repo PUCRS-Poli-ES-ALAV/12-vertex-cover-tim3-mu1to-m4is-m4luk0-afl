@@ -15,4 +15,9 @@ public class Node {
     public int getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "Node [id=" + id + ", value=" + value + "]";
+    } 
 }

@@ -23,7 +23,7 @@ public class Edge {
 
     @Override
     public String toString() {
-        return "Edge [nodeInit=" + nodeInit + ", nodeEnd=" + nodeEnd + ", value=" + value + "]";
+        return "Edge [nodeInit=" + nodeInit.toString() + ", nodeEnd=" + nodeEnd.toString() + ", value=" + value + "]";
     }
 
     
