@@ -39,7 +39,6 @@ public class Grafo{
         }
     }
 
-    //refazer
     public List<NodeEdge> getNodeEdges(Node nInit){
         List<NodeEdge> goList = new ArrayList<NodeEdge>();
         if(nodeExist(nInit)){
