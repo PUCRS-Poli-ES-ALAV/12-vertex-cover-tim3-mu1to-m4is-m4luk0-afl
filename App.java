@@ -23,7 +23,18 @@ public class App {
                 nodes.add(new Node(listaEntrada[1], 0));
             }
             else{
-                edges.add(new Edge(new Node(listaEntrada[0], 0), new Node(listaEntrada[1], 0), (float) 0));
+                Node n1 = null;
+                Node n2 = null;
+                for (Node n : nodes) {
+                    if(n.getId().equals(listaEntrada[0])){
+                        n1 = n;
+                    }
+                    else if (n.getId().equals(listaEntrada[1])){
+                        n2 = n;
+                    }
+                }
+
+                edges.add( new Edge(n1, n2, 0));
             }
 
             line = s.nextLine();
@@ -34,7 +45,18 @@ public class App {
                 nodes.add(new Node(listaEntrada[1], 0));
             }
             else{
-                edges.add(new Edge(new Node(listaEntrada[0], 0), new Node(listaEntrada[1], 0), (float) 0));
+                Node n1 = null;
+                Node n2 = null;
+                for (Node n : nodes) {
+                    if(n.getId().equals(listaEntrada[0])){
+                        n1 = n;
+                    }
+                    else if (n.getId().equals(listaEntrada[1])){
+                        n2 = n;
+                    }
+                }
+
+                edges.add( new Edge(n1, n2, 0));
             }
         s.close();
     }
@@ -44,6 +66,9 @@ public class App {
         List<Edge> elementsI = g.getEdges();
 
         for(Edge n: g.getEdges()) {
+            for (Edge edge : elementsI) {
+                System.out.println(edge.toString());
+            }
             Edge p = n;
             List<Edge> coverAux = new ArrayList<Edge>();
             List<Edge> elements = new ArrayList<Edge>();

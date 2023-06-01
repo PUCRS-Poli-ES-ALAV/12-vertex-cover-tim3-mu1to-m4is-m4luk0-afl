@@ -21,4 +21,10 @@ public class Edge {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return "Edge [nodeInit=" + nodeInit + ", nodeEnd=" + nodeEnd + ", value=" + value + "]";
+    }
+
+    
 }
