@@ -40,15 +40,15 @@ public class Grafo{
     }
 
     //refazer
-    // public List<NodeEdge> getNodeEdges(Node nInit){
-    //     List<NodeEdge> goList = new ArrayList<NodeEdge>();
-    //     if(nodeExist(nInit)){
-    //         for (Edge t: edges){
-    //             if(t.getNodeInit() == nInit){
-    //                 goList.add(new NodeEdge(t.getNodeEnd(), edges.get(0)));
-    //             }
-    //         }
-    //     }
-    //     return goList;
-    // }
+    public List<NodeEdge> getNodeEdges(Node nInit){
+        List<NodeEdge> goList = new ArrayList<NodeEdge>();
+        if(nodeExist(nInit)){
+            for (Edge t: edges){
+                if(t.getNodeInit() == nInit){
+                    goList.add(new NodeEdge(t.getNodeEnd(), t.getValue()));
+                }
+            }
+        }
+        return goList;
+    }
 }
