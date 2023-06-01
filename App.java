@@ -108,7 +108,7 @@ public class App {
         }
         Grafo g = new Grafo(nodes, edges);
         for (Edge n : verticeCover(g)) {
-            System.err.println(n.toString());
+            System.out.println(n.getNodeInit().toString());
         }
     }
 }
