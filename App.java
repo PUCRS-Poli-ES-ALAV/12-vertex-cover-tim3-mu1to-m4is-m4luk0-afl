@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.List;
+import java.util.Random;
 
 public class App {
 
@@ -64,26 +65,27 @@ public class App {
     public static List<Edge> verticeCover(Grafo g){
         List<Edge> cover = new ArrayList<Edge>();
         List<Edge> elementsI = g.getEdges();
-
+        List<Edge> elements = new ArrayList<Edge>();
+        int inter = 0;
         for(Edge n: elementsI) {
             Edge p = n;
-            List<Edge> coverAux = new ArrayList<Edge>();
-            List<Edge> elements = new ArrayList<Edge>();
             for (Edge edge : elementsI) {
                 elements.add(edge);
             }
-
+            List<Edge> coverAux = new ArrayList<Edge>();
             boolean aux = true;
             while (aux){
                 coverAux.add(p);
                 elements.remove(p);
                 List<Edge> remove = new ArrayList<Edge>();
                 for (Edge nodeT : elements) {
+                    inter++;
                     if(nodeT.getNodeInit() == p.getNodeInit() || nodeT.getNodeInit() == p.getNodeEnd() || nodeT.getNodeEnd() == p.getNodeInit() || nodeT.getNodeEnd() == p.getNodeEnd()){
                         remove.add(nodeT);
                     }
                 }
                 for (Edge edge : remove) {
+                    inter++;
                     elements.remove(edge);
                 }
                 if(elements.size() > 0){
@@ -94,11 +96,48 @@ public class App {
                 }
             }
             if(cover.size() == 0 || coverAux.size() < cover.size()){
-                //System.out.println("mudei no cover");
                 cover = coverAux;
             }
         }
+        System.out.println(inter);
         return cover;
+    }
+
+    public static List<Edge> verticeCoverErrado(Grafo g){
+        Random gerador = new Random();
+        List<Edge> cover = new ArrayList<Edge>();
+        List<Edge> elements = g.getEdges();
+        int inter = 0;
+        Edge p = elements.get(gerador.nextInt(elements.size()-1));
+        List<Edge> coverAux = new ArrayList<Edge>();
+        boolean aux = true;
+        while (aux){
+            coverAux.add(p);
+            elements.remove(p);
+            List<Edge> remove = new ArrayList<Edge>();
+            for (Edge nodeT : elements) {
+                inter++;
+                if(nodeT.getNodeInit() == p.getNodeInit() || nodeT.getNodeInit() == p.getNodeEnd() || nodeT.getNodeEnd() == p.getNodeInit() || nodeT.getNodeEnd() == p.getNodeEnd()){
+                    remove.add(nodeT);
+                }
+            }
+            for (Edge edge : remove) {
+                inter++;
+                elements.remove(edge);
+            }
+            if(elements.size() > 0){
+                p = elements.get(0);
+            }
+            else{
+                aux = false;
+            }
+        }
+        if(cover.size() == 0 || coverAux.size() < cover.size()){
+            cover = coverAux;
+        }
+    
+    System.out.println(inter);
+    return cover;
     }
     public static void main(String args[]){
         try {
@@ -107,8 +146,13 @@ public class App {
             e.printStackTrace();
         }
         Grafo g = new Grafo(nodes, edges);
-        for (Edge n : verticeCover(g)) {
-            System.out.println(n.toString());
-        }
+        //System.out.println(g.getEdges().size());
+        // for (Edge n : verticeCover(g)) {
+        //     System.out.println(n.toString());
+        // }
+        // int n = g.getEdges().size();
+        // int result = (n*(1+n*(3+2*n)));
+        // System.out.println(result);
+        System.out.println(verticeCoverErrado(g).size());
     }
 }
