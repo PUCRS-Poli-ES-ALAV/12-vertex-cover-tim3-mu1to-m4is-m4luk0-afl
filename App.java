@@ -9,6 +9,7 @@ public class App {
 
     private static List<Node> nodes;
     private static List<Edge> edges;
+    private static Random gerador = new Random();
 
     public static void reader(String fName) throws FileNotFoundException {
         File file = new File(fName);
@@ -104,7 +105,7 @@ public class App {
     }
 
     public static List<Edge> verticeCoverErrado(Grafo g){
-        Random gerador = new Random();
+        
         List<Edge> cover = new ArrayList<Edge>();
         List<Edge> elements = g.getEdges();
         int inter = 0;
@@ -139,6 +140,25 @@ public class App {
     System.out.println(inter);
     return cover;
     }
+
+    public static List<Node> caixeiroViajante(Grafo g){
+        Node raiz = g.getNodes().get(gerador.nextInt(g.getNodes().size()-1));
+        List<Node> T = new ArrayList<Node>();
+        List<Node> H = new ArrayList<Node>();
+        T = MSTPrim(g, raiz);
+        for(Node n: T){
+            if(!H.contains(n)){
+                H.add(n);
+            }
+        }
+
+        return H;
+    }
+
+    public static List<Node> MSTPrim(Grafo g, Node r){
+        return null;
+    }
+
     public static void main(String args[]){
         try {
             reader(args[0]);
